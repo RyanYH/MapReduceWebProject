@@ -158,6 +158,32 @@ public class RecommandDAO {
 		 }
 		 return list;
 	 }
+	 public List<RecommandVO> recommandFeelData(String feel)
+	 {
+		 List<RecommandVO> list=
+				 new ArrayList<RecommandVO>();
+		 try
+		 {
+			 BasicDBObject where=
+					 new BasicDBObject();
+			 where.put("feel", feel);
+			 DBCursor cursor=dbc.find(where);
+			 while(cursor.hasNext())
+			 {
+				 BasicDBObject obj=
+						 (BasicDBObject)cursor.next();
+				 RecommandVO vo=new RecommandVO();
+				 vo.setTitle(obj.getString("title"));
+				 vo.setCount(obj.getInt("count"));
+				 list.add(vo);
+			 }
+			 cursor.close();
+		 }catch(Exception ex)
+		 {
+			 System.out.println(ex.getMessage());
+		 }
+		 return list;
+	 }
 }
 
 
