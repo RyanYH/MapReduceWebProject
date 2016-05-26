@@ -51,6 +51,7 @@ public class MovieDataManager {
     {
     	List<MovieDTO> list=
     			new ArrayList<MovieDTO>();
+    	String[] color={"#b87333","#CCCCFF","gold","#e5e4e2","#CCEEFF","#00FF00","#CCFFCC"};
     	try
     	{
     		Document doc=Jsoup.connect("http://www.cgv.co.kr/movies/").get();
@@ -73,6 +74,7 @@ public class MovieDataManager {
     			Element selem=sElem.get(i);
     			MovieDTO d=new MovieDTO();
     			d.setNo(i+1);
+    			d.setColor(color[i]);
     			d.setTitle(telem.text());
     			d.setImage(img);
     			int like=Integer.parseInt(lelem.text().replace(",",""));

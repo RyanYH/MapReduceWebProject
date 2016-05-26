@@ -123,10 +123,43 @@ public class MovieController {
 		 model.addAttribute("slist", slist);
 		 return "movie/recommand";
 	 }
+	 /*
+	  *   [
+	                ['Firefox', 45.0],
+	                ['IE', 26.8],
+	          
+	                ['Safari', 8.5],
+	                ['Opera', 6.2],
+	                ['Others', 0.7]
+	            ]
+	  */
 	 @RequestMapping("movie/total.do")
 	 public String movie_total(Model model)
 	 {
 		 List<MovieDTO> list=mgr.movieAllData();
+		 String value="[";
+		 int i=0;
+		 for(MovieDTO d:list)
+		 {
+			 if(i==2)
+			 {
+			    value+="{"
+                    +"name: '"+d.getTitle()+"',"
+                    +"y: "+d.getReserve()+","
+                    +"sliced: true,"
+                    +"selected: true"
+                         +"},";
+			 }
+			 else
+			 {
+				 value+="['"+d.getTitle()+"',"+d.getReserve()+"],";
+			 }
+			  i++;		 
+		 }
+		 
+		 value=value.substring(0,value.lastIndexOf(','));
+		 value+="]";
+		 model.addAttribute("value", value);
 		 model.addAttribute("list", list);
 		 return "movie/total";
 	 }

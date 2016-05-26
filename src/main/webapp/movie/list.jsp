@@ -5,8 +5,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>영화 빅데이터</title>
 <link rel="stylesheet" type="text/css" href="table.css"/>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+  // $("#mydiv").css({ opacity: 0.5 });
+ $(function(){
+	var i=0;
+	$('.aImg').hover(function(){
+		i=$(this).attr("value");
+		$('#m'+i).css({opacity:0.2});
+	},function(){
+		$('#m'+i).css({opacity:1});
+	}) ;
+ });
+</script>
 </head>
 <body>
   <center>
@@ -22,8 +35,8 @@
       <tr>
         <c:forEach var="vo" items="${list }">
            <td>
-              <a href="detail.do?no=${vo.no }">
-              <img src="${vo.image }" width=100 height=150 border=0></a>
+              <a href="detail.do?no=${vo.no }" class="aImg" value="${vo.no }">
+              <img src="${vo.image }" width=100 height=150 border=0 id="m${vo.no }"></a>
            </td>
         </c:forEach>
       </tr>

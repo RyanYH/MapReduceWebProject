@@ -10,7 +10,14 @@ public class MovieDTO {
    private int like;
    private String location;
    private int year,month,day;
+   private String color;
    
+	public String getColor() {
+	return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
 	public int getNo() {
 	return no;
 	}
